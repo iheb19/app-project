@@ -15,7 +15,6 @@ class UserManager(BaseUserManager):
         user=self.model(email=email, **extra_fields)
         user.setpassword(password)
         user.save(using=self._db)
-
         return user
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -24,7 +23,5 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-
     object = UserManager()
-
     USERNAME_FIELD = 'email'
